@@ -8,3 +8,16 @@ before_install:
 
 script:
   - docker run -e CI=true tbrody925/ci_docker_udemy npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "ci_docker_udemy"
+  env: "Cidockerudemy-env"
+  bucket_name: "elasticbeanstalk-us-east-1-198428470873"
+  bucket_path: "ci_docker_udemy"
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key
+    secure: "$AWS_SECRET_ACCESS_KEY"
