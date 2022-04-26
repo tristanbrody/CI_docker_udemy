@@ -1,0 +1,10 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t tbrody925/CI_docker_udemy -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true tbrody925/CI_docker_udemy npm run test
